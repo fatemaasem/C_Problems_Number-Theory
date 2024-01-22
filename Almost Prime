@@ -1,0 +1,45 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long 
+using namespace std;
+bool prim(int x) {
+	int i;
+	for ( i = 2; i <x; i++)
+		if (x % i == 0)
+			break;
+	if (i < x)
+		return false;
+	else
+		return true;
+}
+int main() {
+	int n;
+	cin>>n;
+	int p=0;
+	for(int i=1;i<=n;i++){
+		int x=i;
+		int c=0;
+		for(int j=2;j<i;j++){
+			
+			if(x%j==0){
+				if(prim(j)){
+				c++;
+				while(x%j==0)
+				x=x/j;
+			}
+			}
+		}
+		if(c==2)
+		p++;
+	}
+	cout<<p<<"\n";
+}
+C++
