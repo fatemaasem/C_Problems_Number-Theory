@@ -1,0 +1,89 @@
+#include <iostream>
+
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#define ll long long 
+using namespace std;
+////////////////////////////
+const int MDD = 1e9 + 7;
+const int N=2e5+7;
+int fact[N],inv[N];
+int mul(int a, int b) {
+	return 1ll * a * b % MDD;
+}
+//////////////
+int power(int b, int p) {
+	if (!p)
+		return 1;
+	int  r = power(b, p / 2);
+	r=mul(r,r);
+	if (p % 2 == 1)
+		r =mul(r,b);
+	return r;
+}
+int gcd(int a, int b) {
+	if (b == 0)
+		return a;
+	else
+		return gcd(b, a % b);
+
+}
+bool prim(int x) {
+	bool v = false;
+	for (int i = 2; i*i <= x; i++) {
+		if (x % i == 0) {
+			v = true;
+			return false;
+		}
+	}
+	if (v==false)
+		return true;
+}
+
+void pre(){
+	fact[0]=inv[0]=1;
+	for(int i=1;i<N;i++){
+		fact[i]=mul(i,fact[i-1]);
+		inv[i]=power(fact[i],MDD-2);
+	}
+}
+int nCr(int n,int r){
+	return mul(fact[n],mul(inv[r],inv[n-r]));
+}
+int main() {
+//	cout<<prim(24);
+int t;
+cin>>t;
+	while(t--)
+	{
+		string s1,s2;
+		cin>>s1>>s2;
+		int l1=s1.size();
+		int l2=s2.size();
+		int lcm=l1*l2/gcd(l1,l2);
+		string ans1="";
+		string ans2="";
+		int c1=0;
+		int c2=0;
+		while(c1<lcm/l1){
+			ans1+=s1;
+			c1++;
+		}
+		
+		while(c2<lcm/l2){
+			ans2+=s2;
+			c2++;
+}
+if(ans1==ans2)
+cout<<ans1<<"\n";
+else
+cout<<"-1\n";
+}
+}
+C++
