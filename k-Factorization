@@ -1,0 +1,77 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long 
+using namespace std;
+
+const int N = 1000;
+bool prime(int x){
+	int i;
+	bool res=false;
+	for(i=2;i<x;i++){
+		if(x%i==0){
+			res=true;
+		return false;
+		}
+	
+	}
+if(res==false)
+return true;
+}
+vector<int>fun(int x){
+	vector<int>v;
+	
+	for(int i=2;i<=x;i++){
+		if(x%i==0){
+			
+			if(prime(i)){
+					//cout<<"mmj";
+				while(x%i==0){
+					v.push_back(i);
+				
+					x=x/i;
+				}
+				
+			}
+		}
+	}
+	return v;
+}
+
+int main() {
+	int n,k;
+	cin>>n>>k;
+	//cout<<prime(271)<<" \n";
+vector<int>ans;
+ans=fun(n);
+int num=ans.size();
+ll s=1;
+//cout<<ans.size()<<"lk\n";
+//for(int i=0;i<ans.size();i++)
+//cout<<ans[i]<<" ";
+//cout<<"\n";
+if(k>ans.size())
+cout<<"-1\n";
+else
+{
+
+for(int i=0;i<(num-k+1);i++){
+	s*=ans[i];
+}
+for(int i=ans.size()-1;i>ans.size()-k;i--)
+cout<<ans[i]<<" ";
+cout<<s<<"\n";
+
+	
+}
+	
+	
+}
+C++
