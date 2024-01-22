@@ -1,0 +1,82 @@
+#include <iostream>
+
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#define ll long long 
+using namespace std;
+////////////////////////////
+const int MDD = 1e9 + 7;
+int mul(int a, int b) {
+	return 1ll * a * b % MDD;
+}
+//////////////
+int power(int b, int p) {
+	if (!p)
+		return 1;
+	int  r = power(b, p / 2);
+	r *= r;
+	if (p % 2 == 1)
+		r *= b;
+	return r;
+}
+int gcd(int a, int b) {
+	if (b == 0)
+		return a;
+	else
+		return gcd(b, a % b);
+
+}
+bool prim(int x) {
+	bool v = false;
+	for (int i = 2; i < x; i++) {
+		if (x % i == 0) {
+			v = true;
+			return false;
+		}
+	}
+	if (v==false)
+		return true;
+}
+int ma(int x) {
+	int ma = 0;
+	
+	for (int i = 2; i * i <= x; i++) {
+		if (x % i == 0) {
+			ma=max(i, ma);
+			while (x % i == 0)
+				x /= i;
+		}
+	}
+	return ma;
+}
+int main() {
+	//cout << prim(5);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		int ne = n;
+		bool vv = false;
+		while (n%2!=0) {
+
+			n--;
+			
+		}
+			
+		
+		
+			
+		cout << n/2 << "\n";
+
+	}
+	
+	
+}
+C++
