@@ -1,0 +1,63 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long 
+using namespace std;
+
+const int N = 1e6+4;
+/*
+bool prime(int x){
+	int i;
+	bool res=false;
+	for(i=2;i<x;i++){
+		if(x%i==0){
+			res=true;
+		return false;
+		}
+	
+	}
+if(res==false)
+return true;
+}
+*/
+//////////////////////////////////
+const int NN=1e6+9;
+int ar[NN];
+
+
+
+int main() {
+	//cout<<"ee";
+	
+for(int i=1;i<NN;i++){
+
+		ar[i]=ar[i]+1;
+		for(int j=2*i;j<NN;j=j+i){
+			ar[j]=ar[j]+1;
+		}
+	}
+	
+	
+	
+	int n,k,l;
+	cin>>n>>k>>l;
+ll sum=0;
+	for(int i=1;i<=n;i++){
+		for(int j=1;j<=k;j++){
+			for(int h=1;h<=l;h++){
+				ll res=(i*j*h);
+			sum+=ar[res];
+			sum%=(1073741824 );
+		}
+	}
+}
+	cout<<sum<<"\n";
+	
+}
