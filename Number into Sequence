@@ -1,0 +1,38 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long 
+using namespace std;
+const int N = 1e6 + 6;
+int prim[N];
+void solve() {
+	for (int i = 2; i * i < N; i++) {
+		if (prim[i] == 0) {
+			for (int k = i * i; k < N; k = k + i)
+				prim[k] = 1;
+		}
+
+	}
+}
+int main() {
+	solve();
+	int t;
+	cin >> t;
+	while (t--) {
+		ll n;
+		cin >> n;
+		ll res = sqrt(n);
+		if (n!=1&&res*res==n&&prim[res]==0)
+			cout << "YES\n";
+		else
+			cout << "NO\n";
+	}
+}
+C++
