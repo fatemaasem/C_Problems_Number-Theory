@@ -1,0 +1,80 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long 
+using namespace std;
+
+const int N = 1000;
+
+set<int>s;
+int arr[N];
+void fun() {
+	for (int i = 2; i * i < N; i++) {
+		if (arr[i] == 0) {
+			s.insert(i);
+			for (int j = i * i; j < N; j += i) {
+				arr[j] = 1;
+			}
+		}
+	}
+}
+///////////////////////
+int gcd(int a, int b) {
+	if (b == 0)
+		return a;
+	else
+		return gcd(b, a % b);
+}
+int main() {
+	int n;
+	int m;
+	cin >> n >> m;
+	int gc = gcd(n, m);
+	
+	int nn = n / gc;
+	int mm = m / gc;
+	//cout << nn << " " << mm;
+	int c1 = 0, c2 = 0, c3 = 0;
+	int l1 = 0, l2 = 0, l3 = 0;
+
+	while (nn!=1&&nn % 2 == 0) {
+		c1++;
+		nn = nn / 2;
+	}
+	
+	while (nn!=1&&nn % 3 == 0) {
+		c2++;
+		nn = nn / 3;
+	}
+	//cout << "k";
+	while (nn != 1 && nn % 5 == 0) {
+		c3++;
+		nn = nn / 5;
+	}
+		
+	while (mm!=1&&mm% 2 == 0) {
+		l1++;
+		mm = mm / 2;
+	}
+	while (mm!=1&&mm % 3 == 0) {
+		mm = mm / 3;
+		l2++;
+	}
+	while (mm!=1&&mm % 5 == 0)
+		{
+		c3++;
+		mm = mm / 5;
+	}
+	//cout << "k";
+	if (nn == 1 && mm == 1)
+		cout << abs(c1 - l1) + abs(c2 - l2) + abs(c3 - l3) << "\n";
+	else
+		cout << "-1\n";
+}
