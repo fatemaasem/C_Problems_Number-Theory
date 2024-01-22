@@ -1,0 +1,61 @@
+#include <iostream>
+
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#define ll long long 
+using namespace std;
+////////////////////////////
+const int MDD=1e9+7;
+int mul(int a,int b){
+	return 1ll*a*b%MDD;
+}
+//////////////
+int power(int b,int p){
+	if(!p)
+	return 1;
+int  r=power(b,p/2);
+	r*=r;
+	if(p%2==1)
+	r*=b;
+	return r;
+}
+int gcd(int a, int b) {
+	if (b == 0)
+		return a;
+	else
+		return gcd(b, a % b);
+
+}
+int main() {
+	//cout<<8%15;
+
+	
+int t;
+cin>>t;
+while(t--){
+	ll l,r;
+	cin>>l>>r;
+
+		int res=gcd(l,l+1);
+		//cout<<res<<"\n";
+	//	cout<<res<<"\n";
+	ll value=(l*(l+1));
+	
+	ll value2=l*2;
+	//cout<<value2<<"\n";
+		if(value/res<=r)
+		cout<<l<<" "<<l+1<<"\n";
+		else if(value2<=r)
+			cout<<l<<" "<<2*l<<"\n";
+		
+		else
+		cout<<"-1 -1\n";
+	
+}
+}
