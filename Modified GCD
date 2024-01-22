@@ -1,0 +1,96 @@
+#include <iostream>
+
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#define ll long long 
+using namespace std;
+////////////////////////////
+const int MDD = 1e9 + 7;
+int mul(int a, int b) {
+	return 1ll * a * b % MDD;
+}
+//////////////
+int power(int b, int p) {
+	if (!p)
+		return 1;
+	int  r = power(b, p / 2);
+	r *= r;
+	if (p % 2 == 1)
+		r *= b;
+	return r;
+}
+//////////////////////////////////////////
+
+
+
+
+
+const int N = 1e9 + 7;
+
+//int ar[N];
+
+bool prime(int x) {
+	int i;
+	for (i = 2; i < x; i++) {
+		if (x % i == 0) {
+			break;
+		}
+	}
+	if (i < x)
+		return false;
+	else
+		return true;
+}
+
+int main() {
+	int a, b;
+	cin >> a >> b;
+	if (a > b) {
+		int l = a;
+		int z = b;
+		a = z;
+		b = l;
+	}
+		
+	vector<int>va;
+	for (int i = 2; i * i <= a; i++) {
+		if (a % i == 0) {
+			va.push_back(i);
+		
+		if (a / i != i)
+			va.push_back(a / i);
+	}
+	}
+
+	set<int>s;
+	for (int i = 0; i < va.size(); i++) {
+		if (b % va[i] == 0)
+			s.insert(va[i] * -1);
+	}
+	if (b % a == 0)
+		s.insert(a * -1);
+	s.insert(-1);
+	/*
+	cout << "km\n\n";
+	for (auto io : s)
+		cout << io << "\n";
+	//cout << *s.upper_bound(-5);
+	*/
+	int t;
+	cin >> t;
+	while(t--){
+		int l, r;
+		cin >> l>> r;
+			
+		if (s.lower_bound(r*-1) != s.end()&&(*s.lower_bound(r * -1))<=l*-1)
+			cout << -1 * (*s.lower_bound(r*-1)) << "\n";
+		else
+			cout << "-1\n";
+}
+}
